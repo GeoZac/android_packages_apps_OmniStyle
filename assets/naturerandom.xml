@@ -35,4 +35,10 @@ day_header entries have a higher priority then hour entries -->
     <random_header image="nature13" />
     <random_header image="nature14" />
     <random_header image="nature15" />
+    <random_header image="nature16" />
+    <random_header image="nature17" />
+    <random_header image="nature18" />
+    <random_header image="nature19" />
+    <random_header image="nature20" />
+    <random_header image="nature21" />
 </daylight_headers>
