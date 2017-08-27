@@ -43,6 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity
             android:name=".BrowseWallsActivity"
             android:label="@string/browse_walls"
@@ -71,6 +72,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+=======
+>>>>>>> c31ebbb... OmniStyle: Clean up weather condition icons
 
         <activity
             android:name=".nature"
