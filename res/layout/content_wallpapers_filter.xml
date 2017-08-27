@@ -16,54 +16,31 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:orientation="vertical"
-            android:background="?android:attr/colorPrimary">
-
-            <Spinner
-                android:id="@+id/location_select"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/system_activity_header_text" />
-
-        </LinearLayout>
-
-        <GridView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/wallpaper_images"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-<<<<<<< HEAD
-            android:columnWidth="180dp"
-            android:stretchMode="spacingWidthUniform"
-            android:numColumns="auto_fit" />
-=======
             android:clipToPadding="false"
-            android:scrollbars="vertical"
-            android:padding="@dimen/activity_horizontal_margin" />
->>>>>>> 9c53651... OmniStyle: add theme headers and friends
+            android:padding="@dimen/activity_horizontal_margin"
+            android:scrollbars="vertical" />
 
         <TextView
             android:id="@+id/no_network_message"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:visibility="gone"
             android:text="@string/no_network_message"
-            android:visibility="gone"/>
-
+            android:gravity="center"/>
     </LinearLayout>
 
     <ProgressBar

@@ -15,6 +15,7 @@
      limitations under the License.
 -->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     android:minHeight="40dp"
     android:paddingStart="8dp"
     android:paddingEnd="8dp"
@@ -26,4 +27,18 @@
     android:textSize="16sp"
     android:textStyle="bold" >
 
+=======
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ellipsize="marquee"
+          android:gravity="center_vertical"
+          android:maxLines="1"
+          android:minHeight="48dp"
+          android:paddingEnd="8dp"
+          android:paddingStart="8dp"
+          android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+          android:textColor="@color/system_activity_header_text"
+          android:textSize="16sp"
+          android:background="?android:attr/colorPrimary" >
+>>>>>>> 9c53651... OmniStyle: add theme headers and friends
 </TextView>

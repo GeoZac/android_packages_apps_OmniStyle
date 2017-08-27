@@ -16,24 +16,25 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/content_browse"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical">
+             android:id="@+id/content_browse"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/package_select"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:orientation="vertical"
+            android:background="?android:attr/colorPrimary">
 
+<<<<<<< HEAD
         <TextView
             android:id="@+id/meta_creator"
             android:layout_width="match_parent"
@@ -43,14 +44,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:gravity="center_vertical"
             android:textSize="16sp"
             android:textStyle="bold" />
+=======
+            <Spinner
+                android:id="@+id/package_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/system_activity_header_text" />
+
+            <TextView
+                android:id="@+id/meta_creator"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginStart="10dp"
+                android:gravity="center_vertical"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textSize="16sp"
+                android:visibility="gone"
+                android:textColor="@color/system_activity_header_text" />
+        </LinearLayout>
+>>>>>>> 9c53651... OmniStyle: add theme headers and friends
 
         <ListView
             android:id="@+id/package_images"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:divider="@null"
             android:dividerHeight="0dip"
-            android:divider="@null"/>
+            android:clipToPadding="false" />
 
     </LinearLayout>
 
