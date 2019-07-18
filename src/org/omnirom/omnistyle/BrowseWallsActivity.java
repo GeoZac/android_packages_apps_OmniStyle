@@ -190,8 +190,10 @@ public class BrowseWallsActivity extends Activity {
 
         @Override
         public boolean onLongClick(View view) {
-            int position = getAdapterPosition();
-            downloadRemoteWallpaper(position);
+            if (mCurrentLocation != 0) {
+                int position = getAdapterPosition();
+                downloadRemoteWallpaper(position);
+            }
             return true;
         }
     }
