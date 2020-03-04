@@ -32,6 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="scrolling_wall_dialog_title">Crop wallpaper</string>
     <string name="scrolling_wall_yes">No</string>
     <string name="scrolling_wall_no">Yes</string>
+    <string name="cancel">Cancel</string>
     <string name="wallpaper_location_local">Local</string>
     <string name="wallpaper_location_remote">Remote</string>
     <string name="download_wallpaper_notice">Downloading wallpaper</string>
