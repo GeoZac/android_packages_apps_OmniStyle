@@ -57,6 +57,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.core.content.FileProvider;
 
 import com.squareup.picasso.Picasso;
 
@@ -443,6 +444,24 @@ public class BrowseWallsActivity extends Activity {
         return cropAndSetWallpaperIntent;
     }
 
+    private Intent getViewActivity(File localFile) {
+        final Intent viewIntent = new Intent();
+        viewIntent.setAction(Intent.ACTION_VIEW);
+        viewIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        Uri imageUri = FileProvider.getUriForFile(this, "org.omnirom.omnistyle.provider", localFile);
+        viewIntent.setDataAndType(imageUri, "image/*");
+        return viewIntent;
+    }
+
+    private void openFileInGalleryApp(String wallpaperFile) {
+        Intent viewIntent = getViewActivity(new File(wallpaperFile));
+        if (viewIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(viewIntent);
+        } else {
+            Toast.makeText(BrowseWallsActivity.this, R.string.download_wallpaper_view_notice, Toast.LENGTH_LONG).show();
+        }
+    }
+
     private boolean checkCropActivity() {
         final Intent cropAndSetWallpaperIntent = getCropActivity();
         return cropAndSetWallpaperIntent.resolveActivityInfo(getPackageManager(), 0) != null;
@@ -588,8 +607,14 @@ public class BrowseWallsActivity extends Activity {
             if (!mDownloadOnly) {
                 doSetRemoteWallpaperPost(mWallpaperFile);
             } else {
-                MediaScannerConnection.scanFile(BrowseWallsActivity.this,
+                if (!new File(mWallpaperFile).exists()) {
+                    Toast.makeText(BrowseWallsActivity.this, R.string.download_wallpaper_failed_notice, Toast.LENGTH_LONG).show();
+                } else {
+                    MediaScannerConnection.scanFile(BrowseWallsActivity.this,
                         new String[] { mWallpaperFile }, null, null);
+
+                    openFileInGalleryApp(mWallpaperFile);
+                }
                 mScrollDisabled = false;
             }
         }
