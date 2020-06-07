@@ -25,8 +25,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="wallpaper_type_system">Home screen</string>
     <string name="wallpaper_type_lock">Lock screen</string>
     <string name="header_creator_label">Creator\u003a </string>
-    <string name="no_crop_activity_dialog_text">Omni Gallery app is required to set wallpaper</string>
+    <string name="no_crop_activity_dialog_text">Omni Gallery app is required to set wallpaper.</string>
     <string name="no_crop_activity_dialog_title">Gallery missing</string>
+    <string name="no_crop_activity_dialog_text_sub">You can long press any remote image to download and then use other apps to set it as wallpaper.</string>
     <string name="scrolling_wall_dialog_text">Do you want to crop the wallpaper to the display size\u003f</string>
     <string name="scrolling_wall_dialog_title">Crop wallpaper</string>
     <string name="scrolling_wall_yes">No</string>
@@ -35,6 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="wallpaper_location_remote">Remote</string>
     <string name="download_wallpaper_notice">Downloading wallpaper</string>
     <string name="download_wallpaper_failed_notice">Downloading wallpaper failed</string>
+    <string name="download_wallpaper_view_notice">No gallery app found</string>
     <string name="no_network_message">No network connectivity</string>
     <string name="download_wallpaper_list_failed_notice">Loading wallpaper directory failed</string>
     <string name="wallpaper_default_name">Wallpaper</string>

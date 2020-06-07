@@ -170,7 +170,8 @@ public class BrowseWallsActivity extends Activity {
             int position = getAdapterPosition();
             if (!checkCropActivity()) {
                 AlertDialog.Builder noCropActivityDialog = new AlertDialog.Builder(BrowseWallsActivity.this);
-                noCropActivityDialog.setMessage(getResources().getString(R.string.no_crop_activity_dialog_text));
+                noCropActivityDialog.setMessage(getResources().getString(R.string.no_crop_activity_dialog_text) + "\n\n" +
+                getResources().getString(R.string.no_crop_activity_dialog_text_sub));
                 noCropActivityDialog.setTitle(getResources().getString(R.string.no_crop_activity_dialog_title));
                 noCropActivityDialog.setCancelable(false);
                 noCropActivityDialog.setPositiveButton(android.R.string.ok, null);
