@@ -184,7 +184,7 @@ public class BrowseWallsActivity extends Activity {
             if (mCurrentLocation == 0) {
                 doSetLocalWallpaper(position);
             } else {
-                doSetRemoteWallpaper(position);
+                doSetRemoteWallpaper(position, false);
             }
         }
 
@@ -192,7 +192,7 @@ public class BrowseWallsActivity extends Activity {
         public boolean onLongClick(View view) {
             if (mCurrentLocation != 0) {
                 int position = getAdapterPosition();
-                downloadRemoteWallpaper(position);
+                doSetRemoteWallpaper(position, true);
             }
             return true;
         }
@@ -652,33 +652,16 @@ public class BrowseWallsActivity extends Activity {
         }
     }
 
-    private void doSetRemoteWallpaper(final int position) {
+    private void doSetRemoteWallpaper(final int position, final boolean downloadOnly) {
         runWithStoragePermissions(new Runnable() {
             @Override
             public void run() {
-                // no need to save for later - just always overwrite
-                String fileName = "tmp_wallpaper";
-                RemoteWallpaperInfo ri = mWallpaperUrlList.get(position);
-                File localWallpaperFile = new File(getExternalCacheDir(), fileName);
-                mProgressBar.setVisibility(View.VISIBLE);
-                Toast.makeText(BrowseWallsActivity.this, R.string.download_wallpaper_notice, Toast.LENGTH_SHORT).show();
-                FetchWallpaperTask fetch = new FetchWallpaperTask(false);
-                fetch.execute(ri.mUri, localWallpaperFile.getAbsolutePath());
-            }
-        });
-    }
-
-    private void downloadRemoteWallpaper(final int position) {
-        runWithStoragePermissions(new Runnable() {
-            @Override
-            public void run() {
-                // no need to save for later - just always overwrite
                 RemoteWallpaperInfo ri = mWallpaperUrlList.get(position);
                 String fileName = ri.mImage;
                 File localWallpaperFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), fileName);
                 mProgressBar.setVisibility(View.VISIBLE);
                 Toast.makeText(BrowseWallsActivity.this, R.string.download_wallpaper_notice, Toast.LENGTH_SHORT).show();
-                FetchWallpaperTask fetch = new FetchWallpaperTask(true);
+                FetchWallpaperTask fetch = new FetchWallpaperTask(downloadOnly);
                 fetch.execute(ri.mUri, localWallpaperFile.getAbsolutePath());
             }
         });
