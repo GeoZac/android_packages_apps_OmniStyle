@@ -327,7 +327,8 @@ public class BrowseWallsActivity extends Activity {
             getAvailableWallpapers();
 
             mWallpaperView = (RecyclerView) findViewById(R.id.wallpaper_images);
-            mWallpaperView.setLayoutManager(new GridLayoutManager(this, 2) {
+            int spanCount = getResources().getInteger(R.integer.wallpapers_column_count);
+            mWallpaperView.setLayoutManager(new GridLayoutManager(this, spanCount) {
                 @Override
                 public boolean canScrollVertically() {
                     return !mScrollDisabled && super.canScrollVertically();
