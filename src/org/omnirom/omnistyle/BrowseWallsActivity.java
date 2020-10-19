@@ -444,6 +444,7 @@ public class BrowseWallsActivity extends Activity {
         final Intent cropAndSetWallpaperIntent = new Intent();
         cropAndSetWallpaperIntent.setComponent(new ComponentName("com.android.gallery3d",
                 "com.android.gallery3d.filtershow.crop.CropActivity"));
+        cropAndSetWallpaperIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         return cropAndSetWallpaperIntent;
     }
 
