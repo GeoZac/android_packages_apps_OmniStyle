@@ -37,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <Spinner
                 android:id="@+id/location_select"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:backgroundTint="?android:attr/textColorPrimary" />
 
         </LinearLayout>

@@ -182,9 +182,9 @@ public class BrowseWallsActivity extends Activity {
                 return;
             }
             if (mCurrentLocation == 0) {
-                doSetLocalWallpaper(position);
-            } else {
                 doSetRemoteWallpaper(position, false);
+            } else {
+                doSetLocalWallpaper(position);
             }
         }
 
@@ -300,7 +300,7 @@ public class BrowseWallsActivity extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mCurrentLocation = position;
-                if (position == 0) {
+                if (position == 1) {
                     mWallpaperView.setAdapter(mAdapter);
                     mNoNetworkMessage.setVisibility(View.GONE);
                     mProgressBar.setVisibility(View.GONE);
@@ -324,7 +324,7 @@ public class BrowseWallsActivity extends Activity {
         PackageManager packageManager = getPackageManager();
         try {
             mRes = packageManager.getResourcesForApplication(mPackageName);
-            getAvailableWallpapers();
+            // getAvailableWallpapers();
 
             mWallpaperView = (RecyclerView) findViewById(R.id.wallpaper_images);
             int spanCount = getResources().getInteger(R.integer.wallpapers_column_count);

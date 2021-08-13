@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <item>@string/wallpaper_type_lock</item>
     </string-array>
     <string-array name="location_list">
-        <item>@string/wallpaper_location_local</item>
+        <item>@string/wallpaper_location_remote</item>
     </string-array>
 
 </resources>
