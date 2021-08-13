@@ -78,9 +78,6 @@ public class BrowseWallsActivity extends Activity {
     private static final String TAG = "BrowseWallsActivity";
     private static final String IMAGE_TYPE = "image/*";
     private static final int IMAGE_CROP_AND_SET = 1;
-    private static final String WALLPAPER_LIST_URI = "https://dl.omnirom.org/images/wallpapers/thumbs/json_wallpapers_xml.php";
-    private static final String WALLPAPER_THUMB_URI = "https://dl.omnirom.org/images/wallpapers/thumbs/";
-    private static final String WALLPAPER_FULL_URI = "https://dl.omnirom.org/images/wallpapers/";
     private static final String EMPTY_CREATOR = "ZZZ";
 
     private static final int SORT_BY_DEFAULT = 0;
@@ -530,10 +527,16 @@ public class BrowseWallsActivity extends Activity {
     }
 
     private List<RemoteWallpaperInfo> getWallpaperList() {
-        String wallData = NetworkUtils.downloadUrlMemoryAsString(WALLPAPER_LIST_URI);
+        String listUrl = mRes.getString(R.string.wallpaper_list_source);
+        if (TextUtils.isEmpty(listUrl)) {
+            return null;
+        }
+
+        String wallData = NetworkUtils.downloadUrlMemoryAsString(listUrl);
         if (TextUtils.isEmpty(wallData)) {
             return null;
         }
+
         List<RemoteWallpaperInfo> urlList = new ArrayList<RemoteWallpaperInfo>();
         try {
             JSONArray walls = new JSONArray(wallData);
@@ -552,6 +555,14 @@ public class BrowseWallsActivity extends Activity {
                 if (build.has("tag")) {
                     tag = build.getString("tag");
                 }
+                String fileUrl = null;
+                if (build.has("url")) {
+                    fileUrl = build.getString("url");
+                }
+                String thumbUrl = null;
+                if (build.has("thumb")) {
+                    thumbUrl = build.getString("thumb");
+                }
                 if (!TextUtils.isEmpty(mFilterTag)) {
                     if (TextUtils.isEmpty(tag) || !tag.equals(mFilterTag)) {
                         continue;
@@ -562,8 +573,8 @@ public class BrowseWallsActivity extends Activity {
                     if (ext.equals(".png") || ext.equals(".jpg")) {
                         RemoteWallpaperInfo wi = new RemoteWallpaperInfo();
                         wi.mImage = fileName;
-                        wi.mThumbUri = WALLPAPER_THUMB_URI + fileName;
-                        wi.mUri = WALLPAPER_FULL_URI + fileName;
+                        wi.mThumbUri = thumbUrl;
+                        wi.mUri = fileUrl;
                         wi.mCreator = TextUtils.isEmpty(creator) ? EMPTY_CREATOR : creator;
                         wi.mDisplayName = TextUtils.isEmpty(displayName) ? "" : displayName;
                         wi.mTag = TextUtils.isEmpty(tag) ? "" : tag;

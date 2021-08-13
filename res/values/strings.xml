@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="browse_header">Headers</string>
     <string name="custom_header_image_notice">Header image set</string>
     <string name="browse_walls">Wallpapers</string>
-    <string name="omni_walls">Omni</string>
+    <string name="omni_walls">AICP</string>
     <string name="wallpaper_type_dialog_title">Set wallpaper</string>
     <string name="wallpaper_type_both">Home screen and lock screen</string>
     <string name="wallpaper_type_system">Home screen</string>
