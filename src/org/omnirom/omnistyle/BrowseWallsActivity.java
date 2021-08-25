@@ -457,6 +457,14 @@ public class BrowseWallsActivity extends Activity {
         return viewIntent;
     }
 
+    private Intent getPreviewActivity() {
+        final Intent cropAndSetWallpaperIntent = new Intent();
+        cropAndSetWallpaperIntent.setComponent(new ComponentName("com.android.wallpaper",
+                "com.android.wallpaper.picker.StandalonePreviewActivity"));
+        cropAndSetWallpaperIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        return cropAndSetWallpaperIntent;
+    }
+
     private void openFileInGalleryApp(String wallpaperFile) {
         Intent viewIntent = getViewActivity(new File(wallpaperFile));
         if (viewIntent.resolveActivity(getPackageManager()) != null) {
@@ -509,6 +517,16 @@ public class BrowseWallsActivity extends Activity {
         });
         AlertDialog d = wallpaperTypeDialog.create();
         d.show();
+    }
+
+    private void doCallPreviewActivity(Uri imageUri) {
+
+        final Intent cropAndSetWallpaperIntent = getPreviewActivity()
+                .setDataAndType(imageUri, IMAGE_TYPE)
+                .putExtra(CropExtras.KEY_SCALE, true)
+                .putExtra(CropExtras.KEY_SCALE_UP_IF_NEEDED, true);
+
+        startActivityForResult(cropAndSetWallpaperIntent, IMAGE_CROP_AND_SET);
     }
 
     private List<RemoteWallpaperInfo> getWallpaperList() {
@@ -689,34 +707,7 @@ public class BrowseWallsActivity extends Activity {
         final Uri uri = Uri.fromFile(new File(wallpaperFile));
         if (DEBUG) Log.d(TAG, "crop uri = " + uri);
 
-        // if that image ratio is close to the display size ratio
-        // assume this wall is meant to be fullscreen without scrolling
-        float displayRatio = (float) Math.round(((float) dispSize.x / dispSize.y) * 10) / 10;
-        float imageRatio = (float) Math.round(((float) image.getWidth() / image.getHeight()) * 10) / 10;
-        if (displayRatio != imageRatio) {
-            // ask if scrolling wallpaper should be used original size
-            // or if it should be cropped to image size
-            AlertDialog.Builder scrollingWallDialog = new AlertDialog.Builder(BrowseWallsActivity.this);
-            scrollingWallDialog.setMessage(getResources().getString(R.string.scrolling_wall_dialog_text));
-            scrollingWallDialog.setTitle(getResources().getString(R.string.scrolling_wall_dialog_title));
-            scrollingWallDialog.setCancelable(false);
-            scrollingWallDialog.setPositiveButton(R.string.scrolling_wall_yes, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    doCallCropActivity(uri, dispSize, wpWidth, wpHeight);
-                }
-            });
-            scrollingWallDialog.setNegativeButton(R.string.scrolling_wall_no, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    doCallCropActivity(uri, dispSize, dispSize.x, dispSize.y);
-                }
-            });
-            AlertDialog d = scrollingWallDialog.create();
-            d.show();
-        } else {
-            doCallCropActivity(uri, dispSize, dispSize.x, dispSize.y);
-        }
+        doCallPreviewActivity(uri);
     }
 
     private void doSetLocalWallpaper(final int position) {
