@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        cardview:cardCornerRadius="2dp" >
+        cardview:cardCornerRadius="8dp" >
 
         <RelativeLayout
             android:layout_width="wrap_content"
